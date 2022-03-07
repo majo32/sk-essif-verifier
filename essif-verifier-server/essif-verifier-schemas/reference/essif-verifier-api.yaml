@@ -1,0 +1,135 @@
+openapi: 3.0.0
+info:
+  title: essif-verifier-api
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000/api'
+paths:
+  /verifier/generate-qr:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - verifier
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifierGenerateQRResponse'
+      operationId: get-verifier-generate-qr
+    parameters: []
+  /verifier/state:
+    post:
+      summary: ''
+      operationId: post-verifier-state
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifierStateResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifierStateRequest'
+      tags:
+        - verifier
+    parameters: []
+  /verifier/get_credentials:
+    post:
+      summary: ''
+      operationId: post-verifier-get_credentials
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifierGetCredentialsResponse'
+      tags:
+        - verifier
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifierGetCredentialsRequest'
+    parameters: []
+  /response:
+    post:
+      summary: ''
+      operationId: post-response
+      responses:
+        '204':
+          description: No Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: ''
+      tags:
+        - verifier
+components:
+  schemas:
+    VerifierGenerateQRResponse:
+      title: VerifierGenerateQR
+      type: object
+      properties:
+        qr:
+          type: string
+        request:
+          type: string
+        sessionId:
+          type: string
+        holderUrl:
+          type: string
+    VerifierCredentialsResponse:
+      title: IssuerCredentialsResponse
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        lastname:
+          type: string
+        holderUrl:
+          type: string
+    VerifierStateRequest:
+      title: IssuerStateRequest
+      type: object
+      properties:
+        id:
+          type: string
+    VerifierStateResponse:
+      title: IssuerStateResponse
+      type: object
+      properties:
+        state:
+          type: integer
+    VerifierGetCredentialsRequest:
+      title: IssuerSendCredentialsRequest
+      type: object
+      properties:
+        id:
+          type: string
+    VerifierGetCredentialsResponse:
+      title: IssuerSendCredentialsResponse
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        lastname:
+          type: string
+        identifier:
+          type: string
+        dateOfBirth:
+          type: string
+tags:
+  - name: verifier

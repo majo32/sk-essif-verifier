@@ -1,0 +1,151 @@
+<div class="essif-container">
+  <div class="dxc-main">
+    <div class="dxc-head row">
+      <div class="col-md-7">
+        <p>European Self Sovering Identity Demo</p>
+        <h1>DEMO Bank - Verifier of digital identity</h1>
+      </div>
+      <div class="col-md-5" style="align-items: center; justify-content: flex-end; display: flex;">
+        <img src="/assets/img/logo-essif.png">
+      </div>
+    </div>
+    <div class="dxc-middle row essif-step-1">
+      <div class="dxc-content col-12">
+        <div>
+          <div class="dxc-wizard">
+            <div class="dxc-wizard-step">
+              <div class="dxc-wizard-step-name" [class]="{'active': step >= 0}">
+                Start
+              </div>
+              <div class="dxc-wizard-step-dot" [class]="{'active': step >= 0}">
+
+              </div>
+              <div class="dxc-wizard-step-line " [class]="{'active': step >= 1}">
+
+              </div>
+            </div>
+            <div class="dxc-wizard-step">
+              <div class="dxc-wizard-step-name" [class]="{'active': step >= 1}">
+                Request Verifiable ID
+              </div>
+              <div class="dxc-wizard-step-dot" [class]="{'active': step >= 1}">
+
+              </div>
+              <div class="dxc-wizard-step-line" [class]="{'active': step >= 2}">
+
+              </div>
+            </div>
+            <div class="dxc-wizard-step">
+              <div class="dxc-wizard-step-name" [class]="{'active': step >= 2}">
+                Finish
+              </div>
+              <div class="dxc-wizard-step-dot" [class]="{'active': step >= 2}">
+
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="step == 0">
+            <div class="p1" style="color: rgb(0,61,125)">
+              DEMO bank offer onboarding of new clients using
+              ESSIF Digital Identity Document.
+
+
+            </div>
+            <p class="p2">
+              <button (click)="showQR()" class="btn btn-lg essif-btn">Connect with my ESSIF application</button>
+            </p>
+          </div>
+          <div *ngIf="step == 1">
+            <div class="p1">
+              <h3>Establish ESSIF connection and request Verifiable ID</h3>
+
+              Please connect with ESSIF DEMO Bank portal by
+              scanning this QR code using your ESSIF client app. This
+              pop up will close automatically when you connect from
+              your ESSIF client app
+
+              <br>
+              <a *ngIf="json" [href]="holderUrl + '?token=' + json" target="_blank">Connect on this device</a>
+              <br>
+              <div class="qr">
+                <!--<div class="qr-loading">
+                        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                    </div>-->
+                <div class="essif-qr" style="display: block;">
+                  <img *ngIf="qr" style="max-width: 100%;" [src]="'data:image/png;base64,' + qr" />
+                </div>
+              </div>
+
+            </div>
+            <p class="p2" style="color: rgb(0,61,125)">
+              You will be redirected to next step automatically after scanning qr code
+            </p>
+          </div>
+
+          <div *ngIf="step == 2">
+            <div class="p1" style="color: rgb(0,61,125)">
+
+              Congratulations!<br><br>
+
+              Welcome <span style="font-weight: bold;" class="essif-name">{{credentialSubject.name}} {{credentialSubject.lastname}}</span>
+              <br><br>
+
+              We have
+              received and verified your Digital
+              Identity Document.
+              <br><br>
+              Your personal information was auto-filled using
+              Verifiable ID from your ESSIF wallet.
+              <br><br>
+              Now you are onboarded as a new client of DEMO Bank.
+              <br><br>
+              The demo of verification your identity using ESSIF Mobile Application has finished successfully. You can close the window.
+
+              <br><br>
+              <table>
+                <tr>
+                  <td style="width: 170px;">First name:</td>
+                  <td style="font-weight: bold;" class="essif-firstname">{{credentialSubject.name}}</td>
+                </tr>
+                <tr>
+                  <td>Family name:</td>
+                  <td style="font-weight: bold;" class="essif-lastname">{{credentialSubject.lastname}}</td>
+                </tr>
+                <tr>
+                  <td>Date of birth:</td>
+                  <td style="font-weight: bold;" class="essif-lastname">{{credentialSubject.dateOfBirth}}</td>
+                </tr>
+                <tr>
+                  <td>PCO:</td>
+                  <td style="font-weight: bold;" class="essif-pco">{{credentialSubject.identifier}}</td>
+                </tr>
+
+              </table>
+
+
+              <div class="qr-loading">
+                <i class="fas fa-check fa-9x" style="color: green;"></i>
+              </div>
+
+
+            </div>
+            <p class="p2">
+              <a href="/" class="btn btn-lg essif-btn">Close</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="dxc-footer row">
+
+      <div class="col-12">
+        <div> A solution <br> by</div>
+        <div><img src="/assets/img/logo-dxc.png"></div>
+        <div> &copy; Copyright 2020 <br> All Rights Reserved</div>
+      </div>
+    </div>
+  </div>
+</div>
